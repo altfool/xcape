@@ -1,3 +1,50 @@
+My purpose:
+======
+Let spacebar emulate the function of shift;
+1. add space to Shift modifier through xmodmap directly(add Shift = space):
+
+    it works, but every time when you press spacebar, it will print an extra space before acting like shift;
+    
+2. So I still want to make it more fluent;
+
+    by reading the following websites:
+    
+    https://wiki.archlinux.org/index.php/xmodmap
+    
+    https://github.com/alols/xcape
+    
+    https://www.reddit.com/r/i3wm/comments/5zpz69/using_space_bar_as_mod_is_life_changing/
+   
+   My modification is listed as follows:
+   
+   install xmodmap, xcape;
+   
+   swap spacebar with right shift;
+   
+   add shift_L, shift_R, space to Shift modifier to make all of them work like shift;
+   
+   use xcape to solve the problem mentions in 1(the extra space).
+   
+   Note: xcape -e "space=space" still exists the extra space, that's why I swap spacebar with shift_R;
+   
+   1) modify ~/.Xmodmap
+   
+        keycode  62 = space NoSymbol space
+        
+        keycode  65 = Shift_R NoSymbol Shift_R
+        
+        clear Shift
+        
+        add Shift = Shift_L Shift_R space 
+        
+    2) modify .profile, add
+    
+       $ xmodmap /home/night/.Xmodmap
+        
+       $ xcape -e "Shift_R=space"
+        
+    
+
 XCAPE
 =====
 
